@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
+import { firestore } from 'firebase';
+import Timestamp = firestore.Timestamp;
+import {ItemWithTimestamp} from '../models/item-with-timestamp';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-material-dates-with-firestore';
+  fromServer: Timestamp;
+  timestampToSave: Timestamp;
+
+  constructor(private db: AngularFirestore) {
+
+  }
+
+  save() {
+    const myItem: ItemWithTimestamp = {
+      someTextField: 'some string',
+      theTimestamp: this.timestampToSave
+    };
+    this.db.collection('sampleData').doc('1').set(myItem);
+  }
+
+  load() {
+    this.db.collection('sampleData').doc('1').ref.get().then(result => {
+      console.log('result data is ', result.data());
+      this.fromServer = result.data().theTimestamp;
+    })
+  }
+
+  log() {
+    console.log(this.timestampToSave);
+  }
 }
