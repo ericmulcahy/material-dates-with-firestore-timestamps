@@ -1,3 +1,14 @@
+# Acknowledgement
+This is entirely made possible by @dauledk's material-timestamp-adapter project. Thank you to him for putting in the real work.
+
+# Setup
+This project lets you pick a date with Material Date Picker, saves it to Firestore, and loads it back from the server.
+In order to try out this demonstration you will need to create your own Firebase project:
+- After creating your Firebase project, go to Project Overview -> Settings -> "Add Firebase to your web app" 
+- Copy the configuration to your clipboard
+- Paste it into the `environment.ts` file in this project.
+- You can now start the project with `ng serve` to test it out.
+
 # AngularMaterialDatesWithFirestore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
